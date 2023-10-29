@@ -1,4 +1,7 @@
 FROM php:8.2-apache
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | sudo tee /etc/apt/trusted.gpg.d/microsoft.asc
+RUN curl https://packages.microsoft.com/config/debian/12/prod.list | sudo tee /etc/apt/sources.list.d/mssql-release.list
+RUN ACCEPT_EULA=Y apt-get install -y msodbcsql18
 RUN apt-get update && apt-get install -y unixodbc unixodbc-dev && pecl install sqlsrv-5.11.1 pdo_sqlsrv-5.11.1  
 RUN echo extension=php_pdo_sqlsrv_82_ts.so >> `php --ini | grep "Scan for additional .ini files" | sed -e "s|.*:\s*||"`/pdo_sqlsrv.ini
 RUN echo extension=php_sqlsrv_82_ts.so >> `php --ini | grep "Scan for additional .ini files" | sed -e "s|.*:\s*||"`/sqlsrv.ini
