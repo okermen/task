@@ -1,4 +1,6 @@
 FROM php:8.2-apache
+ENV DB_CONNECTION=sqlsrv
+ENV DB_HOST=localhost
 RUN apt-get update
 RUN apt-get upgrade
 RUN apt-get install -y gnupg
