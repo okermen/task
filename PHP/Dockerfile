@@ -1,6 +1,4 @@
 FROM php:8.2-apache
-ENV DB_CONNECTION=sqlsrv
-ENV DB_HOST=localhost
 ENV ACCEPT_EULA=Y
 RUN apt-get update \
     && apt-get install -y gnupg2 libpng-dev libzip-dev \
